@@ -9,9 +9,9 @@ Outro desafio esta sendo montar o ambiente docker local para testar. Até o mome
 
 ## Escolha da estrutura
 
-1 - Bando de dados: Estou habituada a utilizar oracle, mas escolhi utilizar PostgreSQL pela facilidade de utilização e instalação local.
-2 - Linguagem: Escolhi python por ser a linguagem que mais utilizo atualmente.
-3 - ETL dos dados: Visto a linguagem, optei por spark e assim utilizar pyspark.
+1. Bando de dados: Estou habituada a utilizar oracle, mas escolhi utilizar PostgreSQL pela facilidade de utilização e instalação local.
+2. Linguagem: Escolhi python por ser a linguagem que mais utilizo atualmente.
+3. ETL dos dados: Visto a linguagem, optei por spark e assim utilizar pyspark.
 
 ## Pontos importantes
 Na pasta execucao_local há um notebook com o código para leitura do banco, processamento ETL e escrita do arquivo movimento_flat. Algo simples e que atende a demanda.

@@ -1,7 +1,7 @@
 # test_leitura_tabela_associado.py
 import unittest
 from unittest.mock import MagicMock
-from tabela.leitura_tabela import ler_tabela_associado
+from tabela.leitura_tabela import ler_tabela_cartao
 from sqlalchemy import create_engine
 
 DB_USERNAME = 'postgres'
@@ -26,11 +26,11 @@ properties = {
     "driver": "org.postgresql.Driver"
 }
 
-class TestLeituraTabelaAssociado(unittest.TestCase):
+class TestLeituraTabelaCartao(unittest.TestCase):
     def setUp(self):
         self.spark = MagicMock()
 
-    def test_ler_tabela_associado(self):
-        result = ler_tabela_associado(self.spark, url, properties)
+    def test_ler_tabela_cartao(self):
+        result = ler_tabela_cartao(self.spark, url, properties)
         self.assertTrue(result is not None)
-        # Adicione mais verificações conforme necessário
+

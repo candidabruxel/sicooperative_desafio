@@ -1,0 +1,11 @@
+nome_associado,sobrenome_associado,idade_associado,vlr_transacao_movimento,des_transacao_movimento,data_movimento,numero_cartao,nome_impresso_cartao,tipo,data_criacao_conta
+Pedro,Almeida,40,150.75,Supermercado,2023-04-10,11112,Pedro Almeida,Investimento,2023-02-10
+Mariana,Costa,22,45.80,Restaurante,2023-04-15,55556,Mariana Costa,Corrente,2023-02-15
+Ricardo,Silveira,33,60.00,Compra eletronicos,2023-04-20,99990,Ricardo Silveira,Corrente,2023-02-20
+Camila,Santana,29,25.30,Farmacia,2023-04-25,33334,Camila Santana,Investimento,2023-02-25
+Lucas,Pereira,31,80.45,Livraria,2023-05-01,77778,Lucas Pereira,Corrente,2023-03-01
+Aline,Martins,26,55.60,Shopping,2023-05-05,44445,Aline Martins,Corrente,2023-03-05
+Fernando,Ribeiro,37,90.20,Viagem,2023-05-10,88889,Fernando Ribeiro,Investimento,2023-03-10
+Juliana,Lima,24,40.75,Cinema,2023-05-15,22223,Juliana Lima,Corrente,2023-03-15
+Carlos,Ferreira,28,75.20,Compra online,2023-04-01,12345,Carlos Ferreira,Corrente,2023-03-20
+Ana,Oliveira,35,30.50,Posto de gasolina,2023-04-05,98765,Ana Oliveira,Investimento,2023-03-25

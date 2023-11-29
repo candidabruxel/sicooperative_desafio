@@ -20,3 +20,5 @@ def ler_tabela_cartao(url: str, properties: dict):
 def ler_tabela_movimento(url: str, properties: dict):
     df_movimento_raw = spark.read.jdbc(url=url, table="movimento", properties=properties)
     return df_movimento_raw
+
+spark.stop()

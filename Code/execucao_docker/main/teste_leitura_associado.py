@@ -1,36 +1,26 @@
-# test_leitura_tabela_associado.py
 import unittest
-from unittest.mock import MagicMock
-from tabela.leitura_tabela import ler_tabela_associado
-from sqlalchemy import create_engine
+from pyspark.sql import SparkSession
 
-DB_USERNAME = 'postgres'
-DB_PASSWORD = 'admin'
-DB_HOST = 'localhost'
-DB_PORT = '5432'
-DB_DATABASE = 'desafio'
-
-# Conexão usando SQLAlchemy
-string_conexao = f"postgresql+psycopg2://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
-
-# Crie uma engine usando a string de conexão
-engine = create_engine(string_conexao)
-
-# URL de conexão JDBC
-url = f"jdbc:postgresql://{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
-
-# Propriedades para a conexão JDBC
-properties = {
-    "user": DB_USERNAME,
-    "password": DB_PASSWORD,
-    "driver": "org.postgresql.Driver"
-}
-
-class TestLeituraTabelaAssociado(unittest.TestCase):
+class TesteLeituraAssociado(unittest.TestCase):
     def setUp(self):
-        self.spark = MagicMock()
+        # Configuração do Spark para o teste
+        self.spark = SparkSession.builder.master("local[2]").appName("TesteLeituraAssociado").getOrCreate()
 
-    def test_ler_tabela_associado(self):
-        result = ler_tabela_associado(self.spark, url, properties)
-        self.assertTrue(result is not None)
-        # Adicione mais verificações conforme necessário
+    def tearDown(self):
+        # Encerra a sessão do Spark após o teste
+        self.spark.stop()
+
+    def test_leitura_parquet(self):
+        # Caminho para o arquivo Parquet gerado
+        caminho_parquet = "stg_associado.parquet"
+
+        # Leitura do arquivo Parquet como um DataFrame do Spark
+        df_associado = self.spark.read.parquet(caminho_parquet)
+
+        # Asserts para validar o DataFrame
+        self.assertIsNotNone(df_associado)
+        self.assertTrue("nome" in df_associado.columns)
+        self.assertEqual(df_associado.count(),  10)
+
+if __name__ == '__main__':
+    unittest.main()

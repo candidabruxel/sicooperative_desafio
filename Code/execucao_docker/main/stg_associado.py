@@ -24,8 +24,6 @@ engine = create_engine(string_conexao)
 # Configuração do Spark com o driver JDBC do PostgreSQL
 spark = SparkSession.builder \
     .appName("ETL do Banco de Dados") \
-    .config("spark.driver.extraClassPath", "C:/Users/elton/Documents/projeto/postgresql-42.7.0.jar") \
-    .config("spark.hadoop.home.dir", "C:/Users/elton/Documents/spark-3.5.0-bin-hadoop3") \
     .getOrCreate()
 
 # URL de conexão JDBC

@@ -8,7 +8,7 @@ RUN apt-get update \
 RUN apt-get install -y libpq-dev
 
 # Install psycopg2 
- RUN pip3 install psycopg2
+RUN pip3 install psycopg2
 
 # Installing PostgreSQL client
 RUN apt-get install -y postgresql-client
@@ -25,3 +25,4 @@ RUN python -m pip install --upgrade pip
 # If you have a requirements.txt file, uncomment the next line and copy it
 # COPY requirements.txt requirements.txt
 # RUN pip install -r requirements.txt
+ENTRYPOINT ["python", "main.py"]

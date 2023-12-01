@@ -20,10 +20,10 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 # ETL para criação da tabela movimento_flat)
-df_dim_associado = spark.read.parquet("stg_associado.parquet")
-df_dim_conta = spark.read.parquet("stg_conta.parquet")
-df_dim_cartao = spark.read.parquet("stg_cartao.parquet")
-df_dim_movimento = spark.read.parquet("stg_movimento.parquet")
+df_dim_associado = spark.read.parquet("/opt/bitnami/spark/data/stg_associado.parquet")
+df_dim_conta = spark.read.parquet("/opt/bitnami/spark/data/stg_conta.parquet")
+df_dim_cartao = spark.read.parquet("/opt/bitnami/spark/data/stg_cartao.parquet")
+df_dim_movimento = spark.read.parquet("/opt/bitnami/spark/data/stg_movimento.parquet")
 
 df_movimento_flat = df_dim_associado.alias("associado") \
     .join(df_dim_conta.alias("conta"), col("associado.id") == col("conta.id_associado")) \

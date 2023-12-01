@@ -1,5 +1,6 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
+from pathlib import Path
 
 import pandas as pd
 from sqlalchemy import create_engine
@@ -36,10 +37,19 @@ def main():
         "driver": "org.postgresql.Driver"
     }
 
-    ## Leitura da tabela associado como um DataFrame (Zona Bruta)
+    # Leitura da tabela cartao como um DataFrame (Zona Bruta)
     df_associado_raw = spark.read.jdbc(url=url, table="associado", properties=properties)
 
-    df_associado_raw.write.format("parquet").mode("overwrite").save("stg_associado")
+    # Converte o DataFrame Spark para Pandas
+    df_pandas = df_associado_raw.toPandas()
+
+    # Caminho onde o arquivo CSV será salvo no mesmo diretório que o script
+    output_path = "associado.csv"
+
+    # Garante que o diretório de saída existe
+    df_pandas.to_csv(output_path, index=False)
+
+    print(f"O arquivo CSV será salvo em: {output_path}")
 
 if __name__ == '__main__':
     main()

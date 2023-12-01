@@ -9,13 +9,17 @@ import unittest
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 
-import main.functions as func
-import stg_associado, stg_cartao, stg_conta, stg_movimento, flat_movimento
-from teste_leitura_associado import TestLeituraAssociado
-from teste_leitura_cartao import TestLeituraCartao
-from teste_leitura_conta import TestLeituraConta
-from teste_leitura_movimento import TestLeituraTabelaMovimento
-from teste_leitura_movimento_flat import TestLeituraTabelaMovimentoFlat
+import stg_associado
+import stg_cartao
+import stg_conta
+import stg_movimento
+import flat_movimento
+from teste_leitura_associado import TesteLeituraAssociado
+from teste_leitura_cartao import TesteLeituraCartao
+from teste_leitura_conta import TesteLeituraConta
+from teste_leitura_movimento import TesteLeituraMovimento
+from teste_leitura_movimento_flat import TesteLeituraFlatMovimento
+
 
 warnings.filterwarnings('ignore')
 
@@ -46,11 +50,11 @@ flat_movimento.main()
 if __name__ == "__main__":
     # Carregar testes
     loader = unittest.TestLoader()
-    suite = loader.loadTestsFromTestCase(TestLeituraAssociado)
-    suite.addTests(loader.loadTestsFromTestCase(TestLeituraCartao))
-    suite.addTests(loader.loadTestsFromTestCase(TestLeituraConta))
-    suite.addTests(loader.loadTestsFromTestCase(TestLeituraTabelaMovimento))
-    suite.addTests(loader.loadTestsFromTestCase(TestLeituraTabelaMovimentoFlat))
+    suite = loader.loadTestsFromTestCase(TesteLeituraAssociado)
+    suite.addTests(loader.loadTestsFromTestCase(TesteLeituraCartao))
+    suite.addTests(loader.loadTestsFromTestCase(TesteLeituraConta))
+    suite.addTests(loader.loadTestsFromTestCase(TesteLeituraMovimento))
+    suite.addTests(loader.loadTestsFromTestCase(TesteLeituraFlatMovimento))
 
     # Rodar testes
     runner = unittest.TextTestRunner()

@@ -1,5 +1,4 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col
 
 import pandas as pd
 from sqlalchemy import create_engine
@@ -8,7 +7,7 @@ from sqlalchemy import create_engine
 def main():
     DB_USERNAME = 'postgres'
     DB_PASSWORD = 'admin'
-    DB_HOST = 'localhost'
+    DB_HOST = '192.168.2.107'
     DB_PORT = '5432'
     DB_DATABASE = 'desafio'
 
@@ -38,8 +37,8 @@ def main():
 
     # Leitura da tabela cartao como um DataFrame (Zona Bruta)
     df_cartao_raw = spark.read.jdbc(url=url, table="cartao", properties=properties)
-
+    
     df_cartao_raw.write.format("parquet").mode("overwrite").save("stg_cartao")
-
+    print("criou stg_cartao.parquet")
 if __name__ == '__main__':
     main()

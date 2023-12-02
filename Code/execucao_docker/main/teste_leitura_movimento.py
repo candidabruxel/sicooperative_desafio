@@ -12,15 +12,15 @@ class TesteLeituraMovimento(unittest.TestCase):
 
     def test_leitura_parquet(self):
         # Caminho para o arquivo Parquet gerado
-        caminho_parquet = "movimento_flat.parquet"
+        caminho_parquet = "stg_movimento"
 
         # Leitura do arquivo Parquet como um DataFrame do Spark
-        df_movimento_flat = self.spark.read.parquet(caminho_parquet)
+        df_movimento = self.spark.read.parquet(caminho_parquet)
 
         # Asserts para validar o DataFrame
-        self.assertIsNotNone(df_movimento_flat)
-        self.assertTrue("nome" in df_movimento_flat.columns)
-        self.assertEqual(df_movimento_flat.count(),  10)
+        self.assertIsNotNone(df_movimento)
+        self.assertTrue("id_cartao" in df_movimento.columns)
+        self.assertEqual(df_movimento.count(),  10)
 
 if __name__ == '__main__':
     unittest.main()

@@ -8,7 +8,7 @@ from sqlalchemy import create_engine
 def main():
     DB_USERNAME = 'postgres'
     DB_PASSWORD = 'admin'
-    DB_HOST = 'localhost'
+    DB_HOST = '192.168.2.107'
     DB_PORT = '5432'
     DB_DATABASE = 'desafio'
 
@@ -40,6 +40,6 @@ def main():
     df_movimento_raw = spark.read.jdbc(url=url, table="movimento", properties=properties)
 
     df_movimento_raw.write.format("parquet").mode("overwrite").save("stg_movimento")
-
+    print("criou stg_movimento.parquet")
 if __name__ == '__main__':
     main()

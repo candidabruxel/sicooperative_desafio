@@ -12,7 +12,7 @@ class TesteLeituraConta(unittest.TestCase):
 
     def test_leitura_parquet(self):
         # Caminho para o arquivo Parquet gerado
-        caminho_parquet = "stg_conta.parquet"
+        caminho_parquet = "stg_conta"
 
         # Leitura do arquivo Parquet como um DataFrame do Spark
         df_conta = self.spark.read.parquet(caminho_parquet)

@@ -1,7 +1,4 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col
-from pathlib import Path
-
 import pandas as pd
 from sqlalchemy import create_engine
 
@@ -9,12 +6,13 @@ def main():
 
     DB_USERNAME = 'postgres'
     DB_PASSWORD = 'admin'
-    DB_HOST = 'localhost'
+    DB_HOST = '192.168.2.107'
     DB_PORT = '5432'
     DB_DATABASE = 'desafio'
 
     # Conexão usando SQLAlchemy
     string_conexao = f"postgresql+psycopg2://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
+    
 
     # Tente imprimir a string de conexão para verificar se ela está correta
     print(string_conexao)
@@ -40,16 +38,9 @@ def main():
     # Leitura da tabela cartao como um DataFrame (Zona Bruta)
     df_associado_raw = spark.read.jdbc(url=url, table="associado", properties=properties)
 
-    # Converte o DataFrame Spark para Pandas
-    df_pandas = df_associado_raw.toPandas()
+    df_associado_raw.write.format("parquet").mode("overwrite").save("stg_associado")
 
-    # Caminho onde o arquivo CSV será salvo no mesmo diretório que o script
-    output_path = "associado.csv"
-
-    # Garante que o diretório de saída existe
-    df_pandas.to_csv(output_path, index=False)
-
-    print(f"O arquivo CSV será salvo em: {output_path}")
-
+    print("criou stg_associado.parquet")
+    #stg_associado.show
 if __name__ == '__main__':
     main()

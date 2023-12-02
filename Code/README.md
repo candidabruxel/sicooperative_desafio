@@ -1,12 +1,5 @@
 # Desafio Sicredi
 
-
-## Dificuldades
-Um dos desafios que tive foi utilizar o metodo write.parquet para salvar o arquivo local na máquina, tive problemas com permissões e acabei optando salvar os arquivos com toPandas devido ao prazo, sei que o toPandas pode ser tornar mais lento se utilizado com grande volume de dados, mas para esse cenário funcionou bem.
-
-Outro desafio esta sendo montar o ambiente docker local para testar. Até o momento apenas havia usado docker via airflow e sem testes unitários.
-
-
 ## Escolha da estrutura
 
 1. Bando de dados: Estou habituada a utilizar oracle, mas escolhi utilizar PostgreSQL pela facilidade de utilização e instalação local.
@@ -16,10 +9,15 @@ Outro desafio esta sendo montar o ambiente docker local para testar. Até o mome
 ## Pontos importantes
 Na pasta execucao_local há um notebook com o código para leitura do banco, processamento ETL e escrita do arquivo movimento_flat. Algo simples e que atende a demanda.
 
-Na pasta execucao_docker está os codigos para execução em docker, da leitura do banco, processamento ETL e escrita da tabela final.
+Na pasta execucao_docker está os codigos para execução em docker, da leitura do banco, processamento ETL e escrita da tabela final. Assim como os testes unitários.
+
+## Dificuldades
+Um dos desafios que tive, foi utilizar o metodo write.parquet ou write.format("parquet") para salvar o arquivo local na máquina, tive problemas com permissões e acabei optando por salvar os arquivos com toPandas, sei que o toPandas pode ser tornar mais lento se utilizado com grande volume de dados, mas para esse cenário funcionou bem. Contudo, ao utilizar docker consegui utilizar o write.format("parquet") normalmente.
+
+Outro desafio foi montar o ambiente docker local para testar o código e testes unitários. Até o momento apenas havia usado docker via airflow e sem testes unitáris, apenas com o intuito de deixar automatizado a instalação de versão de bibliotecas e afins. 
 
 ## Considerações
-Para este projeto foi utilizado um notebook emprestado, devido um incidente com o meu, com isso é possivel verificar o nome de outro usuario nos diretorios locais.
+Para este projeto foi utilizado um notebook emprestado, devido um incidente com o meu, com isso é possivel verificar o nome de outro usuario nos diretorios locais do arquivo projeto.ipynb
 
 
 
